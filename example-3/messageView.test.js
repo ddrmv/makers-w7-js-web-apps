@@ -17,4 +17,14 @@ describe('MessageView', () => {
     hideButtonEl.click();
     expect(document.querySelector('#message')).toBeNull();
   });
+
+  it('displays user input', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+    const view = new MessageView();
+
+    const showButtonEl = document.querySelector('#show-message-button');
+    document.querySelector('#message-input').value = 'this!';
+    showButtonEl.click();
+    expect(document.querySelector('#message').textContent).toEqual('this!');
+  });
 });
