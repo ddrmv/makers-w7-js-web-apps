@@ -1,14 +1,26 @@
 class MessageView {
   constructor() {
-    this.buttonEl = document.querySelector('#show-message-button');
-
-    this.buttonEl.addEventListener('click', () => {
+    this.showButtonEl = document.querySelector('#show-message-button');
+    this.showButtonEl.addEventListener('click', () => {
        this.displayMessage();
+    });
+
+    this.hideButtonEl = document.querySelector('#hide-message-button');
+    this.hideButtonEl.addEventListener('click', () => {
+       this.hideMessage();
     });
   }
 
   displayMessage() {
-    console.log('Thanks for clicking me!');
+    const newEl = document.createElement('p');
+    newEl.textContent = 'This message displayed by JavaScript';
+    newEl.id = 'message';
+    document.querySelector('#main-container').append(newEl);
+  }
+
+  hideMessage() {
+    const messageToHide = document.querySelector('#message');
+    messageToHide.remove();
   }
 }
 
