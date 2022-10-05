@@ -1,7 +1,7 @@
-/phase1/bite1/example-1/node_modules/
-/phase1/bite1/example-1/bundle.js
-/phase1/notes-app/node_modules/
-/phase1/notes-app/bundle.js
-/phase1/example-2/node_modules/
-/phase1/example-2/bundle.js
-/phase1/example-2/__MACOSX/
+example-1/node_modules/
+example-1/bundle.js
+notes-app/node_modules/
+notes-app/bundle.js
+example-2/node_modules/
+example-2/bundle.js
+example-2/__MACOSX/
