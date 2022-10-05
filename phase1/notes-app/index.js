@@ -1,16 +1,7 @@
 const NotesModel = require('./notesModel');
+const NotesView = require('./notesView');
 const notesModel = new NotesModel();
-console.log(notesModel.getNotes());
+const notesView = new NotesView(notesModel);
 
-const newElement = document.createElement('p');
-newElement.textContent = "random text";
-document.querySelector('body').append(newElement);
-
-const body = document.querySelector('body');
-const newElement2 = document.createElement('p');
-
-newElement2.textContent = "random text again";
-body.append(newElement2);
-
-const elementToRemove = document.querySelector('p');
-elementToRemove.remove();
+notesModel.addNote('This is an example note');
+notesView.displayNotes();
