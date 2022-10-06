@@ -1,6 +1,7 @@
 class NotesView {
-  constructor(model) {
+  constructor(model, api) {
     this.model = model;
+    this.api = api;
 
     this.showButtonEl = document.querySelector('#show-notes-button');
     this.showButtonEl.addEventListener('click', () => {
@@ -24,6 +25,13 @@ class NotesView {
       document.body.appendChild(newElement);
     })
   }
+
+  displayNotesFromApi = (() => {
+    this.api.loadNotes((notesFromApi) => {
+      this.model.setNotes(notesFromApi);
+      this.displayNotes();
+    });
+  })
 
   removeNotes() {
     document.querySelectorAll('.note').forEach((note) => {

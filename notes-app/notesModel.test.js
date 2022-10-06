@@ -20,12 +20,12 @@ describe('NotesModel', () => {
     expect(model.getNotes()).toEqual([]);
   });
 
-});
+  describe('#setNotes', () => {
+    it('sets notes to provided list', () => {
+      const model = new NotesModel();
+      model.setNotes(['note one', 'note two']);
+      expect(model.getNotes()).toEqual(['note one', 'note two']);
+    });
+  });
 
-// const model = new notesModel();
-// model.getNotes(); // returns []
-// model.addNote('Buy a small country');
-// model.addNote('Lift spoon');
-// model.getNotes();
-// model.reset();
-// model.getNotes();
+});

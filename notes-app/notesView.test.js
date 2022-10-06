@@ -3,10 +3,17 @@
  */
 
 const fs = require('fs');
+const NotesApi = require('./notesApi');
 const NotesModel = require('./notesModel');
 const NotesView = require('./notesView');
 
+jest.mock('./notesApi');
+
 describe('NotesView', () => {
+  beforeEach(() => {
+    NotesApi.mockClear();
+  });
+  
   it('shows notes', () => {
     document.body.innerHTML = fs.readFileSync('./index.html');
     const model = new NotesModel();
@@ -52,4 +59,8 @@ describe('NotesView', () => {
     button.click();
     expect(document.querySelector('#user-input').value).toEqual('');
   });
+
+  // TBU
+  // it('displays notes from api', () => {
+  // });
 });

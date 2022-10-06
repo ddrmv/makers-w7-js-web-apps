@@ -3,6 +3,10 @@ class NotesModel {
     this.notes = [];
   }
 
+  setNotes(remoteNotes) {
+    this.notes = remoteNotes;
+  }
+
   getNotes() {
     return this.notes;
   }
