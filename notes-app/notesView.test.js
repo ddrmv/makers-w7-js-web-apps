@@ -79,4 +79,24 @@ describe('NotesView', () => {
     expect(document.querySelector('.note').textContent).toEqual('remote note');
     done();
   });
+
+  // modified version of the above, using manual mock
+  it('displays notes from api', (done) => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+    const model = new NotesModel();
+
+    const api = {
+      loadNotes: () => {
+        model.setNotes(['remote note']);
+        view.displayNotes();
+      }
+    }
+
+    const view = new NotesView(model, api);
+
+    view.displayNotesFromApi();
+    expect(document.querySelectorAll('.note').length).toBe(1);
+    expect(document.querySelector('.note').textContent).toEqual('remote note');
+    done();
+  });
 });
