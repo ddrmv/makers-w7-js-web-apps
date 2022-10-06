@@ -7,6 +7,7 @@ const NotesApi = require('./notesApi');
 const NotesModel = require('./notesModel');
 const NotesView = require('./notesView');
 
+require('jest-fetch-mock').enableMocks()
 jest.mock('./notesApi');
 
 describe('NotesView', () => {
@@ -60,7 +61,22 @@ describe('NotesView', () => {
     expect(document.querySelector('#user-input').value).toEqual('');
   });
 
-  // TBU
-  // it('displays notes from api', () => {
-  // });
+  // solution from Thomas and Lili, modified
+  it('displays notes from api', (done) => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+    const model = new NotesModel();
+    const api = new NotesApi();
+    const view = new NotesView(model, api);
+
+    api.loadNotes.mockImplementation(() => {
+      model.setNotes(['remote note']);
+      view.displayNotes();
+    });
+
+    view.displayNotesFromApi();
+    expect(api.loadNotes).toHaveBeenCalledTimes(1);
+    expect(document.querySelectorAll('.note').length).toBe(1);
+    expect(document.querySelector('.note').textContent).toEqual('remote note');
+    done();
+  });
 });
