@@ -12,6 +12,7 @@ class NotesView {
   addNote() {
     const userInput = document.querySelector('#user-input').value;
     this.model.addNote(userInput);
+    this.api.createNote(userInput);
     this.removeNotes();
     this.clearUserInput();
     this.displayNotes();
