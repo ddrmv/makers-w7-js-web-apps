@@ -79,4 +79,31 @@ describe('NotesView', () => {
     expect(document.querySelector('.note').textContent).toEqual('remote note');
     done();
   });
+
+  it("update remote server", async () => {
+    const model = new NotesModel();
+
+    api.loadNotes.mockImplementation(() => {
+      model.setNotes(['remote note', 'new note 0']);
+      view.displayNotes();
+    });
+
+    api.createNote.mockImplementation(('new note 1', () => {
+      model.setNotes(['remote note', 'new note 0', 'remote new note']);
+      view.displayNotes();
+    }));
+
+    const view = new NotesView(model, api);
+
+    document.querySelector('#user-input').value = 'new note 1';
+    const button = document.querySelector('#show-notes-button');
+    await button.click();
+
+    expect(document.querySelectorAll('.note').length).toBe(3);
+    expect(api.createNote).toHaveBeenCalledTimes(2);
+    const allNotes = document.querySelectorAll(".note");
+    expect(allNotes[0].textContent).toEqual('remote note');
+    expect(allNotes[1].textContent).toEqual('new note 0');
+    expect(allNotes[2].textContent).toEqual('remote new note');
+  });
 });

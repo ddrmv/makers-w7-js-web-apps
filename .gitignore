@@ -8,5 +8,6 @@ example-3/bundle.js
 example-4/node_modules/
 example-4/bundle.js
 notes-app/node_modules/
+notes-app/coverage/
 notes-app/bundle.js
 notes-backend-server/node_modules/
